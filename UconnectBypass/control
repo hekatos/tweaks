@@ -1,0 +1,9 @@
+Package: org.hekatos.uconnectbypass
+Name: Uconnect Jailbreak Bypass
+Author: ChosenZero
+Description: Bypasses jailbreak detection in the Uconnect app
+Depends: mobilesubstrate
+Maintainer: beerpsi, Hekatos contributors <beerpsi@duck.com>
+Architecture: iphoneos-arm
+Section: Tweaks
+Version: 0.0.1
