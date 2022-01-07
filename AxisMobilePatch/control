@@ -1,0 +1,10 @@
+Package: org.hekatos.axismobilepatch
+Name: Axis Mobile Patch
+Author: Superuser1958
+Description: Simple tweak that bypasses jb detection in Axis Mobile.
+Depends: mobilesubstrate
+Maintainer: joshuah345 <joshuah345@gmail.com>
+Architecture: iphoneos-arm
+Section: Tweaks
+Icon: icons/axismobilepatch.png
+Version: 1.0.0
