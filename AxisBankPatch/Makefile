@@ -3,7 +3,7 @@ export ARCHS = arm64 arm64e
 
 include $(THEOS)/makefiles/common.mk
 
-TWEAK_NAME = AxisMobilePatch
+TWEAK_NAME = AxisBankPatch
 
 AxisMobilePatch_FILES = Tweak.x
 AxisMobilePatch_CFLAGS = -fobjc-arc
