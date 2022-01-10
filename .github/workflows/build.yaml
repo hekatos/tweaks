@@ -20,7 +20,7 @@ jobs:
         uses: Randomblock1/theos-action@v1
       -
         name: Setting up GNU Make
-        run:
+        run: |
           brew install make
           echo PATH=\"$(brew --prefix make)/libexec/gnubin:\$PATH\" >> ~/.zprofile
           source ~/.zprofile
