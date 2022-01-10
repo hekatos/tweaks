@@ -28,6 +28,7 @@ jobs:
         name: Build packages
         run: |
           mkdir output
+          sed "s#Icons:#Icons: https://github.com/hekatos/repo/blob/c5824ef27c413de29ca8e5fbe2bb95ca9d08f5fb/icons/GenshinJailbreakBypass.png#" ./GenshinJailbreakBypass/control
           find . -maxdepth 1 -not -path . -type d -not -name '.git' -not -name 'theos' -exec make -C '{}' package FINALPACKAGE=1 \; 
           find . -type f -iname *.deb -exec mv '{}' output \;
       -
