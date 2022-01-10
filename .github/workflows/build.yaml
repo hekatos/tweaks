@@ -28,7 +28,7 @@ jobs:
         name: Patching files
         run: |
           cd /Users/runner/work/tweaks/tweaks
-          find patches/ -type f -iname *.patch -exec /bin/bash -c 'patchfile=$1; orig_file=$(basename ${patchfile#patches/} .patch); patch $orig_file $patchfile' bash '{}' \;
+          find patches/ -type f -iname *.patch -exec /bin/bash -c 'patchfile=$1; x=${patchfile#patches/}; orig_file=${x%.patch}; patch $orig_file $patchfile' bash '{}' \;
       -
         name: Build packages
         run: |
