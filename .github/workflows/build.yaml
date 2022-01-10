@@ -1,1 +1,35 @@
 
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    if: "!contains(github.event.head_commit.message, 'skip-ci')"
+    runs-on: macos-latest
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          submodules: true
+      -
+        name: Setup Theos
+        uses: Randomblock1/theos-action@v1
+      -
+        name: Build packages
+        run: |
+          mkdir output
+          find * -maxdepth 0 -type d -not -name '.git' -not -name 'theos' -exec /bin/sh -c '
+            for f; do
+              make -C $f package FINALPACKAGE=1
+            done
+          ' sh {} +
+          find . -type f -iname *.deb -exec mv -t output {} +
+      -
+        name: Upload artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          path: output/*
