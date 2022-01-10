@@ -25,11 +25,14 @@ jobs:
           echo PATH=\"$(brew --prefix make)/libexec/gnubin:\$PATH\" >> ~/.zprofile
           source ~/.zprofile
       -
+        name: Patching files
+        run: |
+           find patches/ -type f -iname *.patch -exec /bin/bash -c 'patchfile=$1; orig_file=$(basename ${patchfile#patches/} .patch); patch $orig_file $patchfile' bash '{}' \;
+      -
         name: Build packages
         run: |
           mkdir output
-          sed -i "" "s#Icon:#Icon: https://github.com/hekatos/repo/raw/main/publish/icons/GenshinJailbreakBypass.png#" /Users/runner/work/tweaks/tweaks/GenshinJailbreakBypass/control
-          find . -maxdepth 1 -not -path . -type d -not -name '.git' -not -name 'theos' -exec make -C '{}' package FINALPACKAGE=1 \; 
+          find . -maxdepth 1 -not -path . -type d -not -name "patches" -not -name '.git' -not -name 'theos' -exec make -C '{}' package FINALPACKAGE=1 \;
           find . -type f -iname *.deb -exec mv '{}' output \;
       -
         name: Upload artifacts
