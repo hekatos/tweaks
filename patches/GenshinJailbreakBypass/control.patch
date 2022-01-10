@@ -1,6 +1,17 @@
---- GenshinJailbreakBypass/control	2022-01-11 05:47:29.105534800 +0700
-+++ GenshinJailbreakBypass/control	2022-01-11 05:48:11.035534800 +0700
-@@ -10,4 +10,4 @@
+--- GenshinJailbreakBypass/control	2022-01-11 06:04:09.535534800 +0700
++++ GenshinJailbreakBypass/control	2022-01-11 06:05:37.805534800 +0700
+@@ -1,13 +1,13 @@
+ Package: me.playcover.genshinjailbreakbypass
+ Name: Genshin Jailbreak Bypass
+ Depends: mobilesubstrate
+-Version: 1.0
++Version: 1.1.0
+ Architecture: iphoneos-arm
+ Description: Bypass "Data error, please login again" message
+-Maintainer: iVoider <alex@playcover.me>
++Maintainer: beerpsi <beerpsi@duck.com>
+ Author: iVoider <alex@playcover.me>
+ Section: Tweaks
  Conflicts: 
  Homepage: https://playcover.me/
  Depiction: https://playcover.me/me.playcover.genshinjailbreakbypass.deb
