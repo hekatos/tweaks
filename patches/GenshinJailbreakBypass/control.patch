@@ -1,4 +1,8 @@
-13c13
-< Icon:
----
-> Icon: https://github.com/hekatos/repo/raw/main/publish/icons/GenshinJailbreakBypass.png
+--- GenshinJailbreakBypass/control	2022-01-11 05:47:29.105534800 +0700
++++ GenshinJailbreakBypass/control	2022-01-11 05:48:11.035534800 +0700
+@@ -10,4 +10,4 @@
+ Conflicts: 
+ Homepage: https://playcover.me/
+ Depiction: https://playcover.me/me.playcover.genshinjailbreakbypass.deb
+-Icon: 
++Icon: https://bypass.beerpsi.me/repo/icons/GenshinJailbreakBypass.png
