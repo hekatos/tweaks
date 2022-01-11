@@ -19,12 +19,24 @@ jobs:
         name: Patching files
         run: |
           cd /Users/runner/work/tweaks/tweaks
-          find patches/ -type f -iname *.patch -exec /bin/bash -c 'patchfile=$1; orig_file=${patchfile#patches/}; orig_file=${orig_file%.patch}; orig_file=${orig_file#/}; patch $orig_file $patchfile' bash '{}' \;
+          find patches/ -type f -iname *.patch -exec /bin/bash -c '
+            patchfile=$1; 
+            
+            orig_file=${patchfile#patches/}
+            orig_file=${orig_file%.patch} 
+            orig_file=${orig_file#/}
+            
+            patch $orig_file $patchfile
+          ' bash '{}' \;
       -
         name: Build packages
         run: |
           mkdir output
-          find . -maxdepth 1 -not -path . -type d -not -name "patches" -not -name '.git' -not -name 'theos' -exec make -C '{}' package FINALPACKAGE=1 \;
+          find . -maxdepth 1 -not -path . -type d \
+            -not -name "patches" \
+            -not -name '.git' \
+            -not -name 'theos' \
+            -exec make -C '{}' package FINALPACKAGE=1 \;
           find . -type f -iname *.deb -exec mv '{}' output \;
       -
         name: Upload artifacts
