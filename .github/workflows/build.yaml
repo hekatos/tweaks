@@ -1,8 +1,5 @@
 
-on:
-  push:
-    branches:
-      - main
+on: push
 
 jobs:
   build:
@@ -22,15 +19,68 @@ jobs:
         name: Patching files
         run: |
           cd /Users/runner/work/tweaks/tweaks
-          find patches/ -type f -iname *.patch -exec /bin/bash -c 'patchfile=$1; orig_file=${patchfile#patches/}; orig_file=${orig_file%.patch}; orig_file=${orig_file#/}; patch $orig_file $patchfile' bash '{}' \;
+          find patches/ -type f -iname *.patch -exec /bin/bash -c '
+            patchfile=$1; 
+            
+            orig_file=${patchfile#patches/}
+            orig_file=${orig_file%.patch} 
+            orig_file=${orig_file#/}
+            
+            patch $orig_file $patchfile
+          ' bash '{}' \;
       -
         name: Build packages
         run: |
           mkdir output
-          find . -maxdepth 1 -not -path . -type d -not -name "patches" -not -name '.git' -not -name 'theos' -exec make -C '{}' package FINALPACKAGE=1 \;
+          find . -maxdepth 1 -not -path . -type d \
+            -not -name "patches" \
+            -not -name '.git' \
+            -not -name 'theos' \
+            -exec make -C '{}' package FINALPACKAGE=1 \;
           find . -type f -iname *.deb -exec mv '{}' output \;
       -
         name: Upload artifacts
         uses: actions/upload-artifact@v2
         with:
           path: output/*
+  upload-prerelease:
+    needs: build
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master' # Only upload prereleases when it gets merged to main
+    steps:
+      - 
+        name: Checkout
+        uses: actions/checkout@v2
+      -
+        name: Download artifacts
+        uses: actions/download-artifact@v2
+      -
+        name: Get version information
+        run: |
+          echo "todayDate=$(date +%Y%m%dT%H%M%SZ)" >> $GITHUB_ENV
+      -
+        name: Create release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ env.todayDate }}
+          release_name: Prerelease ${{ env.todayDate }}
+          draft: false
+          prerelease: true
+      - 
+        name: Attach binaries to release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          todayDate: ${{ env.todayDate }}
+          version: ${{ env.version }}
+          name: ${{ env.name }}
+        run: |
+          set -x
+          assets=()
+          for asset in ./artifact/*; do
+            assets+=("-a" "$asset")
+          done
+          hub release edit "${assets[@]}" -m "Prerelease $todayDate" $todayDate
+
