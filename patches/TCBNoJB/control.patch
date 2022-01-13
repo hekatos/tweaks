@@ -1,0 +1,15 @@
+--- TCBNoJB/control	2022-01-13 14:18:25.918808700 +0700
++++ TCBNoJB/control	2022-01-13 14:21:01.678808700 +0700
+@@ -1,9 +1,10 @@
+ Package: com.quanshousio.tcbnojb
+-Name: TCB
++Name: TCBNoJB
+ Version: 0.0.1
+ Architecture: iphoneos-arm
+ Description: Bypass Techcombank jailbreak detection
+-Maintainer: Quan Tran <quan@shousio.com>
++Maintainer: beerpsi <beerpsi@duck.com>
+ Author: Quan Tran <quan@shousio.com>
+ Section: Tweaks
++Homepage: https://github.com/quanshousio/TCBNoJB
+ Depends: mobilesubstrate (>= 0.9.5000)

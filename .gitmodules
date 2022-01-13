@@ -1,3 +1,6 @@
 [submodule "GenshinJailbreakBypass"]
 	path = GenshinJailbreakBypass
 	url = https://github.com/iVoider/GenshinJailbreakBypass
+[submodule "TCBNoJB"]
+	path = TCBNoJB
+	url = https://github.com/quanshousio/TCBNoJB
