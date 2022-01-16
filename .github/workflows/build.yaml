@@ -8,16 +8,22 @@ jobs:
     concurrency:
       group: ${{ github.workflow }}-${{ github.ref }}
     steps:
-      - name: Checkout repository
+      -
+        name: Checkout repository
         uses: actions/checkout@v2
         with:
           submodules: true
-      - 
+      -
+        name: Update submodules
+        run: |
+          git pull --recurse-submodules
+          git submodule update --remote --recursive
+      -
         name: Check cache
         id: verify-cache
         run: |
           echo "::set-output name=heads::`git ls-remote https://github.com/theos/theos | head -n 1 | cut -f 1`-`git ls-remote https://github.com/theos/sdks | head -n 1 | cut -f 1`"
-      - 
+      -
         name: Use cache
         id: cache
         uses: actions/cache@v2
@@ -32,12 +38,12 @@ jobs:
         run: |
           cd /Users/runner/work/tweaks/tweaks
           find patches/ -type f -iname *.patch -exec /bin/bash -c '
-            patchfile=$1; 
-            
+            patchfile=$1;
+
             orig_file=${patchfile#patches/}
-            orig_file=${orig_file%.patch} 
+            orig_file=${orig_file%.patch}
             orig_file=${orig_file#/}
-            
+
             patch $orig_file $patchfile
           ' bash '{}' \;
       -

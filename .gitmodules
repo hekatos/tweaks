@@ -4,3 +4,6 @@
 [submodule "TCBNoJB"]
 	path = TCBNoJB
 	url = https://github.com/quanshousio/TCBNoJB
+[submodule "FlyJB-X"]
+	path = FlyJB-X
+	url = https://github.com/hekatos/FlyJB-X
