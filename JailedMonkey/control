@@ -1,0 +1,9 @@
+Package: org.hekatos.jailedmonkey
+Name: JailedMonkey
+Version: 1.0.1
+Architecture: iphoneos-arm
+Description: Bypass JB Detection In apps using JailMonkey (Currently only for Gympass and Veve)
+Maintainer: Superuser1958
+Author: Lillie & Superuser1958
+Section: Tweaks
+Depends: mobilesubstrate (>= 0.9.5000), firmware (>= 13.0)
