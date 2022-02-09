@@ -19,18 +19,6 @@ jobs:
           git pull --recurse-submodules
           git submodule update --remote --recursive
       -
-        name: Check cache
-        id: verify-cache
-        run: |
-          echo "::set-output name=heads::`git ls-remote https://github.com/theos/theos | head -n 1 | cut -f 1`-`git ls-remote https://github.com/theos/sdks | head -n 1 | cut -f 1`"
-      -
-        name: Use cache
-        id: cache
-        uses: actions/cache@v2
-        with:
-          path: ${{ github.workspace }}/theos
-          key: ${{ runner.os }}-${{ steps.verify-cache.outputs.heads }}
-      -
         name: Setup Theos
         uses: Randomblock1/theos-action@v1
       -
@@ -55,7 +43,7 @@ jobs:
             -not -name '.git' \
             -not -name 'theos' \
             -not -name 'LICENSE' \
-            -exec make -C '{}' package FINALPACKAGE=1 \;
+            -exec gmake -C '{}' package FINALPACKAGE=1 \;
           find . -type f -iname *.deb -exec mv '{}' output \;
       -
         name: Upload artifacts
