@@ -43,7 +43,7 @@ jobs:
             -not -name '.git' \
             -not -name 'theos' \
             -not -name 'LICENSE' \
-            -exec gmake -C '{}' package FINALPACKAGE=1 \;
+            -exec make -C '{}' package FINALPACKAGE=1 \;
           find . -type f -iname *.deb -exec mv '{}' output \;
       -
         name: Upload artifacts
