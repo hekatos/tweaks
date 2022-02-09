@@ -54,6 +54,7 @@ jobs:
             -not -name "patches" \
             -not -name '.git' \
             -not -name 'theos' \
+            -not -name 'LICENSE' \
             -exec make -C '{}' package FINALPACKAGE=1 \;
           find . -type f -iname *.deb -exec mv '{}' output \;
       -
