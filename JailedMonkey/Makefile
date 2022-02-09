@@ -1,4 +1,4 @@
-TARGET := iphone:clang:14.4:13.0
+TARGET := iphone:clang:14.5:13.0
 INSTALL_TARGET_PROCESSES = Gympass, Veve, onemobileapp
 GO_EASY_ON_ME = 1
 
