@@ -20,7 +20,7 @@ jobs:
           git submodule update --remote --recursive
       -
         name: Setup Theos
-        uses: beerpiss/theos-action@v1.1
+        uses: beerpiss/theos-action@v1.1.1
       -
         name: Patching files
         run: |
