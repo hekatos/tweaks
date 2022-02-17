@@ -6,4 +6,4 @@ Description: Bypass JB Detection In apps using JailMonkey (Currently only for Gy
 Maintainer: Superuser1958
 Author: Lillie & Superuser1958
 Section: Tweaks
-Depends: mobilesubstrate (>= 0.9.5000), firmware (>= 13.0)
+Depends: mobilesubstrate (>= 0.9.5000), firmware (>= 12.0)
